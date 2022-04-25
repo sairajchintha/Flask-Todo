@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheyalsina Panulu</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+</head>
+<body style="background-color:#FFEB3B;">
+    <div class="ui container" style="margin-top: 50px;">
+    <h1 class="ui center aligned header">Cheyalsina Panulu</h1>
+
+    <form class="ui form" action="/add" method="post">
+        <div class="field">
+            <label for="title">Em Pani?</label>
+            <input type="text" name="title" placeholder="panento type chey...">
+            <br>
+            <label style="margin-top: 15px;" for="duedate">Epati lopu Cheyali:</label>
+            <input style="margin-top: 15px;" type="date" name="duedate">
+            <br>
+            <button style="margin-top: 15px;" class="ui blue button" type="submit">Add</button>
+
+        </div>
+    </form>
+
+    {% for todo in todo_list %}
+    <div class="ui segment" style="background:#FFEE58">
+        <p class="ui big header"> {{ todo.id }} . {{ todo.title }} | Due by {{ todo.duedate }} </p>
+
+        
+        {% if todo.complete == False %}
+        <span class="ui gray label">Ayipoinda??</span>
+        {% else %}
+        <span class="ui green label">Hammayya Aipoindi!!</span>
+        {% endif %}
+
+        <a class="ui blue button" href="/update/{{ todo.id }}">Chesesa</a>
+        <a class="ui red button" href="/delete/{{ todo.id }}">Theesesta</a>
+    </div>
+    {% endfor %}
+    </div>
+</body>
+</html>
